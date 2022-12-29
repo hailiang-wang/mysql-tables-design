@@ -13,6 +13,8 @@ $shortopts .= "d:"; // database
 $shortopts .= "u:"; // username
 $shortopts .= "p:"; // password
 $shortopts .= "v:"; // version
+$shortopts .= "s:"; // version
+$shortopts .= "m:"; // version
 $options = getopt($shortopts);
 
 define('DB_HOST',$options["H"]);
@@ -25,6 +27,8 @@ define('DB_CHAR', "utf8");
 // 其他配置
 $title = '春松客服-数据字典';
 $version = $options["v"];
+$link_sql = $options["s"];
+$link_model = $options["m"];
 
 $conn = @mysqli_connect(DB_HOST.':'.DB_PORT,DB_USER,DB_PASS) or die("Mysql connect is error.");
 mysqli_select_db($conn, DB_NAME);
@@ -63,9 +67,9 @@ mysqli_close($conn);
 $content = '';
 // 循环所有表
 foreach($tables as $k => $v){
-	$content .= '<p><h2>'. $v['TABLE_COMMENT'] . '&nbsp;</h2>';
+	$content .= '<p><h2>'. $v['TABLE_NAME'] . '&nbsp;</h2>';
 	$content .= '<table  border="1" cellspacing="0" cellpadding="0" align="center">';
-	$content .= '<caption>' . $v ['TABLE_NAME'] . '  ' . $v ['TABLE_COMMENT'] . '</caption>';
+	$content .= '<caption>' . '  ' . $v ['TABLE_COMMENT'] . '</caption>';
 	$content .= '<tbody><tr><th>字段名</th><th>数据类型</th><th>默认值</th>
     <th>允许非空</th>
     <th>自动递增</th><th>备注</th></tr>';
@@ -106,8 +110,11 @@ table td{height:25px; font-size:12px; border:3px solid #fff; background-color:#f
 </head>
 <body>
 <h1 style="text-align:center;">$title<span style="font-size:14px;color: #ccc;margin-left:20px;">(生成日期: $date)</span></h1>
-<p>版本：$version</p>
+<p><span>版本：$version</span>，SQL：<a href="$link_sql">下载链接</a>，Models PDF：<a href="$link_model">下载链接</a></p>
 $content
+
+</br>
+<p style="text-align:center"> - 春松客服, <a href="https://www.cskefu.com">https://www.cskefu.com</a> - </p>
 </body>
 </html>
 EOT;
