@@ -110,7 +110,7 @@ table td{height:25px; font-size:12px; border:3px solid #fff; background-color:#f
 </head>
 <body>
 <h1 style="text-align:center;">$title<span style="font-size:14px;color: #ccc;margin-left:20px;">(生成日期: $date)</span></h1>
-<p><span>版本：$version</span>，SQL：<a href="$link_sql">下载链接</a>，Models PDF：<a href="$link_model">下载链接</a></p>
+<p><span>生成工具：<a href="https://github.com/hailiang-wang/mysql-tables-design">mysql-tables-design</a></span>，<span>设计版本：$version</span>，SQL：<a href="$link_sql">下载链接</a>，Models PDF：<a href="$link_model">下载链接</a></p>
 $content
 
 </br>

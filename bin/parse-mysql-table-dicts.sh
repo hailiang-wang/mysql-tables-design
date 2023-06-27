@@ -11,7 +11,9 @@ export PATH=/opt/miniconda3/envs/venv-py3/bin:$PATH
 export TS=$(date +%Y%m%d%H%M%S)
 export DATE=`date "+%Y%m%d"`
 export DATE_WITH_TIME=`date "+%Y%m%d-%H%M%S"` #add %3N as we want millisecond too
+export CSKEFU_ROOT=~/cskefu/cskefu
 php=/c/devel/php/php.exe
+
 
 # functions
 
@@ -51,7 +53,7 @@ pandoc ../index.html \
     --template ../../assets/standalone.html \
     --toc --toc-depth=2
 
-cp index.html $baseDir/../../../docs/mysql-dicts.html
+cp index.html $CSKEFU_ROOT/docs/mysql-dicts.html
 
 echo "Generated doc index.html in" `pwd`
 

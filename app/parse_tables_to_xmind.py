@@ -37,6 +37,7 @@ MYSQL_DATABASE = ENVIRON['MYSQL_DATABASE']
 MYSQL_HOST = ENVIRON['MYSQL_HOST']
 MYSQL_PORT = ENVIRON['MYSQL_PORT']
 OUTPUT_FILENAME_XMIND = ENVIRON['OUTPUT_FILENAME_XMIND']
+DATE_WITH_TIME = ENVIRON['DATE_WITH_TIME']
 
 import json
 import mysql.connector
@@ -154,7 +155,8 @@ def generate_output_file(tables, table_info, table_columns, table_foreign_keys, 
     w = xmind.load(OUTPUT_FILENAME_XMIND)
     primary_sheet = w.getPrimarySheet()  # get the first sheet
     root = primary_sheet.getRootTopic()  # 创建根节点
-    root.setTitle(MYSQL_DATABASE)
+    root.setTitle("%s\n%s" % (MYSQL_DATABASE, DATE_WITH_TIME))
+    root.setPlainNotes("%s\n\n%s" % (json.dumps(tables, indent=2), "Generated with https://github.com/hailiang-wang/mysql-tables-design"))
 
     # create tables
     level1 = dict()
